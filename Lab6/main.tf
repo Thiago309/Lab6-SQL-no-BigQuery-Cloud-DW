@@ -10,7 +10,7 @@ resource "google_bigquery_dataset" "dataset" {
   location                    = "US"
 }
 
-resource "google_bigquery_table" "table_1" {
+resource "google_bigquery_table" "lab6_table_1" {
   deletion_protection = false
   dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
   table_id            = "tbCliente"
@@ -34,7 +34,7 @@ resource "google_bigquery_table" "table_1" {
   ])
 }
 
-resource "google_bigquery_table" "table_2" {
+resource "google_bigquery_table" "lab6_table_2" {
   deletion_protection = false
   dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
   table_id            = "tbProduto"
@@ -58,7 +58,7 @@ resource "google_bigquery_table" "table_2" {
   ])
 }
 
-resource "google_bigquery_table" "table_3" {
+resource "google_bigquery_table" "lab6_table_3" {
   deletion_protection = false
   dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
   table_id            = "tbFato"
