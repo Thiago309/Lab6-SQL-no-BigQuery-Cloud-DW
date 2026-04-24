@@ -3,8 +3,8 @@ provider "google" {
   region      = "us-west1"
 }
 
-resource "google_bigquery_dataset" "dataset" {
-  dataset_id                  = "dw_dataset"
+resource "google_bigquery_dataset" "lab6_dataset" {
+  dataset_id                  = "lab6_dw_dataset"
   friendly_name               = "Lab 6"
   description                 = "Lab 6 do Curso de Modelagem de DW"
   location                    = "US"
