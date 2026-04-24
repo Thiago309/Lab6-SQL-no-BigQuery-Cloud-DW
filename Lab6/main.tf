@@ -132,7 +132,7 @@ resource "google_bigquery_job" "job_sql_2" {
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbProdutoDSA.csv",
+      "gs://lab6-modeling-p1/tbProduto.csv",
     ]
 
     destination_table {
