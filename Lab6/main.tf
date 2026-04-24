@@ -3,21 +3,21 @@ provider "google" {
   region      = "us-west1"
 }
 
-resource "google_bigquery_dataset" "dsa_dataset" {
-  dataset_id                  = "dsa_dw_dataset"
-  friendly_name               = "DSA Lab 6"
+resource "google_bigquery_dataset" "dataset" {
+  dataset_id                  = "dw_dataset"
+  friendly_name               = "Lab 6"
   description                 = "Lab 6 do Curso de Modelagem de DW"
   location                    = "US"
 }
 
-resource "google_bigquery_table" "dsa_table_1" {
+resource "google_bigquery_table" "table_1" {
   deletion_protection = false
-  dataset_id          = google_bigquery_dataset.dsa_dataset.dataset_id
-  table_id            = "tbClienteDSA"
+  dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
+  table_id            = "tbCliente"
 
   schema = jsonencode([
     {
-      "name": "tbClienteDSA_id",
+      "name": "tbCliente_id",
       "type": "INTEGER",
       "mode": "REQUIRED"
     },
@@ -34,14 +34,14 @@ resource "google_bigquery_table" "dsa_table_1" {
   ])
 }
 
-resource "google_bigquery_table" "dsa_table_2" {
+resource "google_bigquery_table" "table_2" {
   deletion_protection = false
-  dataset_id          = google_bigquery_dataset.dsa_dataset.dataset_id
-  table_id            = "tbProdutoDSA"
+  dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
+  table_id            = "tbProduto"
 
   schema = jsonencode([
     {
-      "name": "tbProdutoDSA_id",
+      "name": "tbProduto_id",
       "type": "INTEGER",
       "mode": "REQUIRED"
     },
@@ -58,10 +58,10 @@ resource "google_bigquery_table" "dsa_table_2" {
   ])
 }
 
-resource "google_bigquery_table" "dsa_table_3" {
+resource "google_bigquery_table" "table_3" {
   deletion_protection = false
-  dataset_id          = google_bigquery_dataset.dsa_dataset.dataset_id
-  table_id            = "tbFatoDSA"
+  dataset_id          = google_bigquery_dataset.lab6_dataset.dataset_id
+  table_id            = "tbFato"
 
   schema = jsonencode([
     {
@@ -70,12 +70,12 @@ resource "google_bigquery_table" "dsa_table_3" {
       "mode": "REQUIRED"
     },
     {
-      "name": "tbClienteDSA_id",
+      "name": "tbCliente_id",
       "type": "INTEGER",
       "mode": "REQUIRED"
     },
     {
-      "name": "tbProdutoDSA_id",
+      "name": "tbProduto_id",
       "type": "INTEGER",
       "mode": "REQUIRED"
     },
@@ -99,21 +99,21 @@ resource "random_string" "random_id" {
 }
 
 resource "google_bigquery_job" "job_sql_1" {
-  job_id = "dsa_job_${random_string.random_id.result}_1"
+  job_id = "lab6_job_${random_string.random_id.result}_1"
 
   labels = {
-    "dsa_job" = "job_sql_1"
+    "lab6_job" = "job_sql_1"
   }
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbClienteDSA.csv",
+      "gs://lab6-modeling-p1/tbCliente.csv",
     ]
 
     destination_table {
-      project_id = google_bigquery_table.dsa_table_1.project
-      dataset_id = google_bigquery_table.dsa_table_1.dataset_id
-      table_id   = google_bigquery_table.dsa_table_1.table_id
+      project_id = google_bigquery_table.lab6_table_1.project
+      dataset_id = google_bigquery_table.lab6_table_1.dataset_id
+      table_id   = google_bigquery_table.lab6_table_1.table_id
     }
 
     skip_leading_rows = 1
@@ -124,10 +124,10 @@ resource "google_bigquery_job" "job_sql_1" {
 }
 
 resource "google_bigquery_job" "job_sql_2" {
-  job_id = "dsa_job_${random_string.random_id.result}_2"
+  job_id = "lab6_job_${random_string.random_id.result}_2"
 
   labels = {
-    "dsa_job" = "job_sql_2"
+    "lab6_job" = "job_sql_2"
   }
 
   load {
@@ -136,9 +136,9 @@ resource "google_bigquery_job" "job_sql_2" {
     ]
 
     destination_table {
-      project_id = google_bigquery_table.dsa_table_2.project
-      dataset_id = google_bigquery_table.dsa_table_2.dataset_id
-      table_id   = google_bigquery_table.dsa_table_2.table_id
+      project_id = google_bigquery_table.lab6_table_2.project
+      dataset_id = google_bigquery_table.lab6_table_2.dataset_id
+      table_id   = google_bigquery_table.lab6_table_2.table_id
     }
 
     skip_leading_rows = 1
@@ -149,21 +149,21 @@ resource "google_bigquery_job" "job_sql_2" {
 }
 
 resource "google_bigquery_job" "job_sql_3" {
-  job_id = "dsa_job_${random_string.random_id.result}_3"
+  job_id = "lab6_job_${random_string.random_id.result}_3"
 
   labels = {
-    "dsa_job" = "job_sql_3"
+    "lab6_job" = "job_sql_3"
   }
 
   load {
     source_uris = [
-      "gs://dsa-modeling-p1/tbFatoDSA.csv",
+      "gs://lab6-modeling-p1/tbFato.csv",
     ]
 
     destination_table {
-      project_id = google_bigquery_table.dsa_table_3.project
-      dataset_id = google_bigquery_table.dsa_table_3.dataset_id
-      table_id   = google_bigquery_table.dsa_table_3.table_id
+      project_id = google_bigquery_table.lab6_table_3.project
+      dataset_id = google_bigquery_table.lab6_table_3.dataset_id
+      table_id   = google_bigquery_table.lab6_table_3.table_id
     }
 
     skip_leading_rows = 1
@@ -172,4 +172,3 @@ resource "google_bigquery_job" "job_sql_3" {
     autodetect = true
   }
 }
-
