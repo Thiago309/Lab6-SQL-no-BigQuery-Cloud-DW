@@ -92,6 +92,7 @@ resource "google_bigquery_table" "lab6_table_3" {
   ])
 }
 
+/*Esse recurso evita conflitos de nomes na execução dos jobs na GCP. Senão, a execução sempre recriará os arquivos com o mesmo nome, causando conflitos.*/
 resource "random_string" "random_id" {
   length  = 8
   special = false
