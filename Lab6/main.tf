@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "modelagem-dw-Lab6"
+  project     = "modelagem-dw-lab6"
   region      = "us-west1"
 }
 

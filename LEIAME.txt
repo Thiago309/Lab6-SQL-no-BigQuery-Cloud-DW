@@ -19,3 +19,17 @@ docker run -dit --name gcp-dw-lab6 -v ./Lab6:/lab6 img-modelagem-gcp:lab6 /bin/b
 terraform version
 gcloud version
 
+
+# Processo para autenticação de usuário (gcloud) dentro do container:
+
+1. Comando para autenticação:
+gcloud auth application-default login
+
+2. Definir a cota do projeto no Google Cloud:
+gcloud config set project [ID DO SEU PROJETO NO CGP]
+
+3. terraform init
+
+4. terraform plan
+
+5. terraform apply  
