@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "modelagem-dw-lab6"
+  project     = "modelagem-dw-lab6-494300"
   region      = "us-west1"
 }
 
@@ -92,7 +92,6 @@ resource "google_bigquery_table" "lab6_table_3" {
   ])
 }
 
-/*Esse recurso evita conflitos de nomes na execução dos jobs na GCP. Senão, a execução sempre recriará os arquivos com o mesmo nome, causando conflitos.*/
 resource "random_string" "random_id" {
   length  = 8
   special = false
@@ -108,7 +107,7 @@ resource "google_bigquery_job" "job_sql_1" {
 
   load {
     source_uris = [
-      "gs://lab6-modeling-p1/tbCliente.csv",
+      "gs://lab6_dw_dataset/tbCliente.csv",
     ]
 
     destination_table {
@@ -133,7 +132,7 @@ resource "google_bigquery_job" "job_sql_2" {
 
   load {
     source_uris = [
-      "gs://lab6-modeling-p1/tbProduto.csv",
+      "gs://lab6_dw_dataset/tbProduto.csv",
     ]
 
     destination_table {
@@ -158,7 +157,7 @@ resource "google_bigquery_job" "job_sql_3" {
 
   load {
     source_uris = [
-      "gs://lab6-modeling-p1/tbFato.csv",
+      "gs://lab6_dw_dataset/tbFato.csv",
     ]
 
     destination_table {

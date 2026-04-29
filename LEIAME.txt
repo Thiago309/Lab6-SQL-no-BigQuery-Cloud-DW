@@ -28,6 +28,8 @@ gcloud auth application-default login
 2. Definir a cota do projeto no Google Cloud:
 gcloud config set project [ID DO SEU PROJETO NO CGP]
 
+gcloud projects list
+
 3. terraform init
 
 4. terraform plan
